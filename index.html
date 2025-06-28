@@ -4,13 +4,46 @@
         <meta charset = "UTF-8">
         <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
         <title> Página Pessoal de Bruno Rangel </title>
+        <style>
+            :root {
+                --cor-fundo: "f1f1f1";
+                --cor-texto: #333;
+                --cor-titulo: #000;
+            }
+            body.dark-mode {
+                --cor-fundo: #212121;
+                --cor-texto: #ccc;
+                --cor-titulo: #000;
+            }
+            body {
+                font-family: sans-serif;
+                line-height: 1.6;
+                margin: 20px;
+                background-color: var(--cor-fundo);
+                color: var(--cor-texto);
+                transition: background-color 0.3s, color 0.3s;
+            }
+            h1, h2 {
+                color: var(--cor-titulo);
+            }
+            #toggle-theme {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                padding: 10px;
+                cursor: pointer;
+                border-radius: 5px;
+                border: 1px solid var(--cor-texto);
+                background-color: var(--cor-fundo);
+                color: var(--cor-texto);
+            }
+        </style>
     </head>
     <body>
+        <button id="toggle-theme">Alterar Tema</button>
         <h1>Bruno Rangel Pereira Tadim</h1>
 
-        <p> Bem-vindo(a) à minha página pessoal.
-            
-        </p>
+        <p> Bem-vindo(a) à minha página pessoal.</p>
 
         <p> 
             No primeiro semestre de 2025, na disciplina Caminhos no Bacharelado em Ciência da Computação (MAC0102), 
@@ -26,5 +59,25 @@
             Como ainda estou no primeiro semestre do curso, pois vim de transferência de outra unidade, ainda possuo minhas dúvidas sobre quais trilha seguir, 
             mas até o momento, me interessei pelas trilhas de Teoria da Computação e Inteligência Artificial.
         </p>
+
+        <script>
+            const toggleButton = document.getElementById('toggle-theme');
+            const body = document.body;
+
+            toggleButton.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+
+                if (body.classList.contains('dark-mode')) {
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                body.classList.add('dark-mode');
+            }
+        </script>
     </body>
 </html>
